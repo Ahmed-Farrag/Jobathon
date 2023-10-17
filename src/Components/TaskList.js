@@ -2,7 +2,7 @@ import React from "react";
 import { Accordion, Button, Row } from "react-bootstrap";
 import { task } from "../Data/data";
 
-const List = ({ data, deleteOneItem, onUpdateItem }) => {
+const TaskList = ({ data, deleteOneItem, onUpdateItem }) => {
   // Retrieve items from local storage
   const dataLocal = JSON.parse(localStorage.getItem("items"));
 
@@ -47,4 +47,4 @@ const List = ({ data, deleteOneItem, onUpdateItem }) => {
   );
 };
 
-export default List;
+export default TaskList;

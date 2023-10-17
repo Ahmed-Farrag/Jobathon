@@ -4,7 +4,7 @@ import { useState } from "react";
 import { task } from "../Data/data";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import List from "../Components/List";
+import TaskList from "../Components/TaskList";
 
 const HomePage = () => {
   const [data, setData] = useState(task);
@@ -44,7 +44,7 @@ const HomePage = () => {
         <Row className="justify-content-center">
           <Col sm="12">
             <FormInput onAdd={addItem} notify={notify} />
-            <List data={data} deleteOneItem={deleteOneItem} />
+            <TaskList data={data} deleteOneItem={deleteOneItem} />
             {data.length >= 1 ? (
               <Button
                 onClick={deleteAllItems}
