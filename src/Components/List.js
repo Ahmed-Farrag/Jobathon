@@ -12,7 +12,7 @@ const List = ({ data, deleteOneItem, onUpdateItem }) => {
       const index = task.findIndex((item) => item.id === ID);
       // Remove the item from the task
       task.splice(index, 1);
-      // Call the deleteOneItem function with the updated task array
+      // Call the deleteOneItem function with the updated task
       deleteOneItem(task);
     }
   };

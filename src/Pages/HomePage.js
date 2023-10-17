@@ -1,9 +1,7 @@
 import { Button, Col, Container, Row } from "react-bootstrap";
 import FormInput from "../Components/FormInput";
-
 import { useState } from "react";
 import { task } from "../Data/data";
-
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import List from "../Components/List";

@@ -16,8 +16,7 @@ const FormInput = ({ onAdd, notify, onEdit }) => {
     if (editIndex === -1) {
       task.push({ id: Math.random(), q: qu, a: an });
     } else {
-      task[editIndex].q = qu;
-      task[editIndex].a = an;
+      task[editIndex] = { ...task[editIndex], q: qu, a: an };
       setEditIndex(-1);
     }
 
@@ -34,6 +33,12 @@ const FormInput = ({ onAdd, notify, onEdit }) => {
     setEditIndex(index);
   };
 
+  const cancelModification = () => {
+    setQu("");
+    setAn("");
+    setEditIndex(-1);
+  };
+
   return (
     <Row className="my-3">
       <Col sm="5">
@@ -41,7 +46,7 @@ const FormInput = ({ onAdd, notify, onEdit }) => {
           value={qu}
           onChange={(e) => setQu(e.target.value)}
           type="text"
-          placeholder="task description"
+          placeholder="Task description"
         />
       </Col>
       <Col sm="5">
@@ -49,38 +54,23 @@ const FormInput = ({ onAdd, notify, onEdit }) => {
           value={an}
           onChange={(e) => setAn(e.target.value)}
           type="text"
-          placeholder="status"
+          placeholder="Status"
         />
       </Col>
       <Col sm="2">
-        {editIndex === -1 ? (
-          <Button
-            onClick={addNewItem}
-            className="w-100"
-            variant="primary"
-            type="submit"
-          >
-            Add
-          </Button>
-        ) : (
-          <Button
-            onClick={addNewItem}
-            className="w-100"
-            variant="primary"
-            type="submit"
-          >
-            Edit
-          </Button>
-        )}
+        <Button
+          onClick={addNewItem}
+          className="w-100"
+          variant="primary"
+          type="submit"
+        >
+          {editIndex === -1 ? "Add" : "Edit"}
+        </Button>
       </Col>
       {editIndex !== -1 && (
         <Col sm="12" className="mt-2">
           <Button
-            onClick={() => {
-              setQu("");
-              setAn("");
-              setEditIndex(-1);
-            }}
+            onClick={cancelModification}
             className="w-100"
             variant="secondary"
           >
@@ -93,12 +83,13 @@ const FormInput = ({ onAdd, notify, onEdit }) => {
         className="mt-2"
         style={{ backgroundColor: "#E8E8E8", borderRadius: "20px" }}
       >
-        <h5> Task And Status</h5>
+        <h5>Task And Status</h5>
         {task.map((item, index) => (
           <div key={item.id}>
-            <span>{item.q}</span>
-            <span> - </span>
-            <span>{item.a}</span>
+            <span>
+              {item.q} - {item.a}
+            </span>
+
             <Button
               onClick={() => editItem(index)}
               className="m-2"
